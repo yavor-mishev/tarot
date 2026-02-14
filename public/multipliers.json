@@ -1,0 +1,56 @@
+{
+	"middle": [
+		{
+			"alias": "10",
+			"src": "/assets/faces/gold/tarot-bckseat-gold-10.png",
+			"weight": 3
+		},
+		{
+			"alias": "5",
+			"src": "/assets/faces/gold/tarot-bckseat-gold-5.png",
+			"weight": 6
+		},
+		{
+			"alias": "3",
+			"src": "/assets/faces/gold/tarot-bckseat-gold-3.png",
+			"weight": 13
+		},
+		{
+			"alias": "2",
+			"src": "/assets/faces/gold/tarot-bckseat-gold-2.png",
+			"weight": 23
+		},
+		{
+			"alias": "1",
+			"src": "/assets/faces/gold/tarot-bckseat-gold-1.png",
+			"weight": 55
+		}
+	],
+	"side": [
+		{
+			"alias": "4",
+			"src": "/assets/faces/silver/tarot-bckseat-silver-4.png",
+			"weight": 7
+		},
+		{
+			"alias": "2",
+			"src": "/assets/faces/silver/tarot-bckseat-silver-2.png",
+			"weight": 9
+		},
+		{
+			"alias": "0.6",
+			"src": "/assets/faces/silver/tarot-bckseat-silver-06.png",
+			"weight": 15
+		},
+		{
+			"alias": "0.3",
+			"src": "/assets/faces/silver/tarot-bckseat-silver-03.png",
+			"weight": 50
+		},
+		{
+			"alias": "0.0",
+			"src": "/assets/faces/silver/tarot-bckseat-silver-0.png",
+			"weight": 19
+		}
+	]
+}

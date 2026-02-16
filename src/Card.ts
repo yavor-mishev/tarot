@@ -16,15 +16,12 @@ export class CardSprite extends PIXI_PROJECTION.Container3d {
         this.multiplier = multiplier ?? 0;
 
         const tex = PIXI.Assets.get(faceTexture);
+        const scale = 0.4;
 
-        this.shadow = new PIXI_PROJECTION.Sprite3d(PIXI.Texture.WHITE);
+        this.shadow = this.createCardSprite(PIXI.Texture.WHITE, scale);
         this.shadow.tint = 0x000000;
         this.shadow.width = tex.width * 0.6;
         this.shadow.height = tex.height * 0.9;
-        this.shadow.scale3d.x = 0.4;
-        this.shadow.scale3d.y = 0.4;
-        this.shadow.scale3d.z = 0.4;
-        this.shadow.anchor.set(0.5);
         this.shadow.alpha = 0.3;
         this.shadow.parentGroup = shadowGroup;
         this.addChild(this.shadow);
@@ -35,25 +32,25 @@ export class CardSprite extends PIXI_PROJECTION.Container3d {
         this.addChild(this.inner);
         
 
-        this.back = new PIXI_PROJECTION.Sprite3d(PIXI.Assets.get("back"));
-        this.back.anchor.set(0.5);
-
-        this.back.scale3d.x = 0.4;
-        this.back.scale3d.y = 0.4;
-        this.back.scale3d.z = 0.4;
+        this.back = this.createCardSprite(PIXI.Assets.get("back"), scale);
         this.inner.addChild(this.back);
         
 
-        this.face = new PIXI_PROJECTION.Sprite3d(tex);
-        this.face.anchor.set(0.5);
-        this.face.scale3d.x = 0.4;
-        this.face.scale3d.y = 0.4;
-        this.face.scale3d.z = 0.4;
+        this.face = this.createCardSprite(tex, scale);
         this.face.euler.y = Math.PI;
         this.inner.addChild(this.face);
 
         this.back.renderable = true;
         this.face.renderable = false;
+    }
+
+    private createCardSprite(texture: PIXI.Texture, scale: number): PIXI_PROJECTION.Sprite3d {
+        const sprite = new PIXI_PROJECTION.Sprite3d(texture);
+        sprite.anchor.set(0.5);
+        sprite.scale3d.x = scale;
+        sprite.scale3d.y = scale;
+        sprite.scale3d.z = scale;
+        return sprite;
     }
     
     updateFace() {

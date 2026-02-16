@@ -45,13 +45,19 @@ app.renderer.backgroundColor = 0xff0000;
 
 ## Adding images to the app
 
-Everything we want to add from now on in our app has to be added to the stage, which is the root container that holds all display objects. The stage is accessible via `app.stage`.
+Pixi uses a tree-based scene graph with the `stage` being the **root container**.Everything we want to add from now on in our app has to be added to the `stage`. We can access it using the `app.stage` property.
 
 ```typescript
 app.stage;
 ```
 
 The `stage` is a Pixi Container object, which means it can hold other display objects, such as sprites, graphics, text, other containers and more.
+
+Within the parent-child relationship between objects, when a parent moves, rotates or changes alpha (transparency 0-1), all its children inhgerit those changes. This allows us to create complex scenes and animations by grouping objects together.
+
+The render order of objects depends on the order they were added to the stage
+
+And its important to remember that chiled positions are based on the parent container, not the stage. So if you move a container, all its children will move with it, but their local positions will remain the same.
 
 ### Sprites
 
@@ -63,7 +69,7 @@ Pixi has a Sprite class that we can use to create sprites. There are 3 main ways
 - from a sub-image on a tileset
 - from a texture atlas
 
-#### Loading assets/textures
+#### Assets system (loading assets)
 
 Before you can make a sprite display an image, you need to convert an ordinary image file into a WebGL texture. For this we use the Assets API, which is a powerful and flexible way to load and manage assets in Pixi.js. It supports loading images, JSON files, audio files, and more. You can use it like this:
 

@@ -45,6 +45,7 @@ I have tried my best to not use AI to write code for me but rather to give me cl
 
 - loading multiple asseys as one image (spritesheet) for better performance (and selecting specific frames from the spritesheet for different sprites) and some other tricks that could boost performance, such as using `ParticleContainer` for a large number of similar sprites.
 - how the renderer works and its properties.
+- is it possible to use regular 2d sprites and add them to a 3d container to achive the effect of perspective? Since the camera is the most important part of achieving the perspective effect, would it be possible to use 2d sprites instead?
 
 ## Things Id like to improve in the future and if i had more time
 

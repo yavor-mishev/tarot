@@ -18,7 +18,7 @@ export class CardSprite extends PIXI_PROJECTION.Container3d {
         const tex = PIXI.Assets.get(faceTexture);
         const scale = 0.4;
 
-        this.shadow = this.createCardSprite(PIXI.Texture.WHITE, scale);
+        this.shadow = this.createCardSprite(PIXI.Texture.WHITE, scale); // WHITE is a 1x1 white texture built into PIXI
         this.shadow.tint = 0x000000;
         this.shadow.width = tex.width * 0.6;
         this.shadow.height = tex.height * 0.9;

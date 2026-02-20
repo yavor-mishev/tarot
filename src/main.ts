@@ -2,6 +2,8 @@ import * as PIXI from 'pixi.js';
 import * as PIXI_PROJECTION from 'pixi-projection';
 import * as PIXI_DISPLAY from '@pixi/layers';
 import { gsap } from 'gsap';
+
+import { gameConfig } from './config';
 import { CardSprite } from "./Card.ts";
 import { weightedRandom, showResult, targetPositions } from  "./utils.ts";
 import multipliers from "../public/multipliers.json";
@@ -26,10 +28,9 @@ await PIXI.Assets.load("back");
 
 const camera = new PIXI_PROJECTION.Camera3d();
 camera.position.set(app.screen.width / 2, app.screen.height / 2);
-camera.setPlanes(350, 10, 100000); // increased the fov for less distortion at close range (200 -> 350)
-camera.euler.x = Math.PI / 6;
+camera.setPlanes(gameConfig.camera.fov, gameConfig.camera.nearPLane, gameConfig.camera.farPLane);
+camera.euler.x = gameConfig.camera.tiltAngle;
 app.stage.addChild(camera);
-
 
 const shadowGroup = new PIXI_DISPLAY.Group(1, false);
 const cardsGroup = new PIXI_DISPLAY.Group(2, false);
@@ -72,18 +73,15 @@ document.querySelector("button")?.addEventListener('click', (event) => {
   const masterTimeline = gsap.timeline({
     onComplete: () => {
       button.disabled = false;
-      
-      const total = cards[0].multiplier * cards[1].multiplier * cards[2].multiplier;
-      console.log('Total payout:', total);
       showResult(cards, app, centerX, centerY);
     }
   });
   
-  masterTimeline.to(cards, {
-    alpha: 1,
-    duration: 0.3,
-    stagger: 0.1
-  });
+  masterTimeline
+    .to(cards, {
+      alpha: 1,
+      duration: 0.3
+    });
   
   cards.forEach((card, i) => {
     const target = targetPositions[i];
@@ -93,9 +91,9 @@ document.querySelector("button")?.addEventListener('click', (event) => {
         x: target.x,
         y: target.y,
         z: target.z,
-        duration: 0.6,
+        duration: 0.5,
         ease: "back.out(1.2)"
-      }, i * 0.15 + 0.2)
+      }, "<0.2")
   });
 
   masterTimeline
